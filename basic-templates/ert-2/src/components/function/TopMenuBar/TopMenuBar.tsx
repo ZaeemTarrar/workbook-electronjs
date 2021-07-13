@@ -29,7 +29,7 @@ const TopMenuBar: React.FC = (): JSX.Element => {
   return (
     <>
       <div className="TopMenuBarContainer">
-        <div style={{ float: 'left' }}>
+        <div style={{ float: 'left' }} className="Dragger">
           <span>
             <span>
               <img src="icon.ico" style={Logo} />
@@ -46,6 +46,9 @@ const TopMenuBar: React.FC = (): JSX.Element => {
             color={'#7bd44e'}
             size={15}
             style={{ margin: '2px' }}
+            onClick={(e) => {
+              ipcRenderer.send('minimizeApp')
+            }}
           />
           <StopCircleFill
             className="expander"
@@ -53,7 +56,7 @@ const TopMenuBar: React.FC = (): JSX.Element => {
             size={15}
             style={{ margin: '2px' }}
             onClick={(e) => {
-              ipcRenderer.send('minMaxApp', true)
+              ipcRenderer.send('minMaxApp')
             }}
           />
           <XCircleFill
@@ -62,7 +65,7 @@ const TopMenuBar: React.FC = (): JSX.Element => {
             size={15}
             style={{ margin: '2px' }}
             onClick={(e) => {
-              ipcRenderer.send('quitApp', true)
+              ipcRenderer.send('quitApp')
             }}
           />
         </div>

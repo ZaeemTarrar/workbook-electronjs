@@ -16,7 +16,7 @@ const isDev = require('electron-is-dev')
 const Store = require('electron-store')
 const IPC = require('./helpers/ipc/index')
 // const { InitTray } = require('./helpers/trayWindow/index')
-const { InitTrayMenu, InitTrayWindow } = require('./helpers/trayWindow/index2')
+const { InitTrayWindow } = require('./helpers/trayWindow/index2')
 const CreateMenu = require('./helpers/menus/menu-1')
 
 // contextBridge.exposeInMainWorld('darkMode', {
@@ -92,6 +92,7 @@ const createWindow = () => {
     maximizable: true,
     minimizable: true,
     useContentSize: true,
+    maximize: false,
     show: false,
     webPreferences: {
       nodeIntegration: true,
@@ -139,7 +140,37 @@ const createWindow = () => {
   // mainWindow.setFullScreen(true)
 
   mainWindow.webContents.on('did-finish-load', function () {
-    IPC(mainWindow, ipcMain)
+    // IPC(mainWindow, ipcMain)
+    mainWindow.webContents.send('isTray', false)
+    ipcMain.on('quitApp', (event) => {
+      try {
+        mainWindow.close()
+      } catch (err) {
+        console.log('Error: ', err)
+      }
+    })
+    ipcMain.on('minimizeApp', (event) => {
+      try {
+        mainWindow.minimize()
+      } catch (err) {
+        console.log('Error: ', err)
+      }
+    })
+    ipcMain.on('minMaxApp', (event) => {
+      try {
+        console.log(mainWindow.isFullScreen(), mainWindow.isMaximized())
+        if (mainWindow.isMaximized()) {
+          mainWindow.restore()
+          mainWindow.unmaximize()
+          console.log('Restored')
+        } else {
+          mainWindow.maximize()
+          console.log('Maximized')
+        }
+      } catch (err) {
+        console.log('Error: ', err)
+      }
+    })
     setTimeout(() => {
       splash.destroy()
       mainWindow.show()

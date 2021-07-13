@@ -31,16 +31,23 @@ module.exports = (win, ipc) => {
   //   os.cpuUsage(function (v) {
   //     win.webContents.send('cpu', v * 100)
   //   })
-  win.webContents.send('isTray', false)
-  ipcMain.on('quitApp', (event, data) => {
-    if (data == true) {
-      win.close()
-      win = null
-    }
-  })
-  ipcMain.on('minMaxApp', (event, data) => {
-    if (data == true) {
-      win.toggleFullScreen()
-    }
-  })
+  // win.webContents.send('isTray', false)
+  // ipcMain.on('quitApp', (event, data) => {
+  //   try {
+  //     if (data == true) {
+  //       win.close()
+  //       win = null
+  //     }
+  //   } catch (err) {
+  //     console.log('Error: ', err)
+  //   }
+  // })
+  // ipcMain.on('minMaxApp', (event, data) => {
+  //   try {
+  //     if (data == true) {
+  //     }
+  //   } catch (err) {
+  //     console.log('Error: ', err)
+  //   }
+  // })
 }

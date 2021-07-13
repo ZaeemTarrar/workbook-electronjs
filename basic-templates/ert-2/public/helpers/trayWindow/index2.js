@@ -16,40 +16,40 @@ let MainTray = null
 let MainTrayWindow = null
 let MainTrayVisibility = false
 
-let template = [
-  {
-    label: 'Audio',
-    submenu: [
-      {
-        label: 'Low',
-        type: 'radio',
-        checked: true,
-        click: () => {},
-      },
-      {
-        label: 'High',
-        type: 'radio',
-        click: () => {},
-      },
-    ],
-  },
-  {
-    label: 'Video',
-    submenu: [
-      {
-        label: '1280x720',
-        type: 'radio',
-        checked: true,
-        click: () => {},
-      },
-      {
-        label: '1920x1080',
-        type: 'radio',
-        click: () => {},
-      },
-    ],
-  },
-]
+// let template = [
+//   {
+//     label: 'Audio',
+//     submenu: [
+//       {
+//         label: 'Low',
+//         type: 'radio',
+//         checked: true,
+//         click: () => {},
+//       },
+//       {
+//         label: 'High',
+//         type: 'radio',
+//         click: () => {},
+//       },
+//     ],
+//   },
+//   {
+//     label: 'Video',
+//     submenu: [
+//       {
+//         label: '1280x720',
+//         type: 'radio',
+//         checked: true,
+//         click: () => {},
+//       },
+//       {
+//         label: '1920x1080',
+//         type: 'radio',
+//         click: () => {},
+//       },
+//     ],
+//   },
+// ]
 
 const WINDOW_SIZE_DEFAULTS = {
   width: 300,
@@ -60,17 +60,17 @@ const WINDOW_SIZE_DEFAULTS = {
   },
 }
 
-const InitTrayMenu = (tray) => {
-  /**
-   * Application Menu
-   */
-  const ctxMenu = Menu.buildFromTemplate(template)
-  const iconPath = path.join(__dirname, './../../icon.ico')
-  tray = new Tray(iconPath)
-  tray.setContextMenu(ctxMenu)
-  tray.setToolTip('Tray Application')
-  return tray
-}
+// const InitTrayMenu = (tray) => {
+//   /**
+//    * Application Menu
+//    */
+//   const ctxMenu = Menu.buildFromTemplate(template)
+//   const iconPath = path.join(__dirname, './../../icon.ico')
+//   tray = new Tray(iconPath)
+//   tray.setContextMenu(ctxMenu)
+//   tray.setToolTip('Tray Application')
+//   return tray
+// }
 
 const createTrayWindow = () => {
   MainTrayWindow = new BrowserWindow({
@@ -146,7 +146,6 @@ const calculateWindowPosition = () => {
   if (!MainTray) return
   const screenBounds = screen.getPrimaryDisplay().size
   const trayBounds = MainTray.getBounds()
-  console.log(screenBounds, trayBounds)
   let x = 0
   let y = 0
   let StartMenu = 40
@@ -172,7 +171,15 @@ const InitTrayWindow = () => {
   MainTray = new Tray(iconPath)
   createTrayWindow()
   MainTrayWindow.webContents.on('did-finish-load', () => {
-    IPC(MainTrayWindow, MainTray, ipcMain)
+    // IPC(MainTrayWindow, MainTray, ipcMain)
+    MainTrayWindow.webContents.send('isTray', true)
+    ipcMain.on('quitApp', (event) => {
+      try {
+        MainTrayWindow.close()
+      } catch (err) {
+        console.log('Error: ', err)
+      }
+    })
     MainTray.setIgnoreDoubleClickEvents(true)
     MainTray.on('click', (event) => {
       //   console.log('Clicked: ', MainTrayWindow.isVisible(), MainTrayVisibility)
@@ -199,6 +206,5 @@ const InitTrayWindow = () => {
 }
 
 module.exports = {
-  InitTrayMenu,
   InitTrayWindow,
 }
