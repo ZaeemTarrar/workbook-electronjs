@@ -1,0 +1,55 @@
+:root {
+  --dark-bg-1: #222;
+  --dark-bg-2: #333;
+  --dark-c-1: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Comic Sans MS;
+  color: var(--dark-c-1);
+}
+
+body {
+  background-color: var(--dark-bg-2);
+  color: var(--dark-c-1);
+}
+
+a {
+  text-decoration: none !important;
+  color: var(--dark-c-1);
+}
+
+.expander {
+  transition: transform 0.1s, color 0.1s;
+}
+.expander:hover {
+  transform: scale(1.3);
+}
+
+.TopMenuBarContainer {
+  width: 100vw;
+  height: 3vh;
+  min-height: 25px;
+  background-color: var(--dark-bg-1);
+  color: var(--dark-c-1);
+  justify-content: center;
+  align-items: center;
+  padding: 0.5vh 0.5vw;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1000px) {
+  .TopMenuBarContainer {
+    width: 100vw;
+    height: 5vh;
+    min-height: 25px;
+    background-color: var(--dark-bg-1);
+    color: var(--dark-c-1);
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 1vw;
+    font-size: 13px;
+  }
+}

@@ -11,7 +11,7 @@ npm i -D concurrently electron electron-builder electron-forge electron-packager
 ```
 
 ```
-npm i --save axios react-bootstrap bootstrap@4.6.0 cross-env electron-is-dev electron-squirrel-startup electron-store jsonwebtoken lodash p5 react-p5 react-p5-wrapper os-utils redux react-redux react-router react-router-dom
+npm i --save axios react-bootstrap bootstrap@4.6.0 cross-env electron-is-dev electron-squirrel-startup electron-store jsonwebtoken lodash p5 react-p5 react-p5-wrapper os-utils redux react-redux react-router react-router-dom react-bootstrap-icons
 ```
 
 ```
