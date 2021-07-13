@@ -1,7 +1,67 @@
 {
   "name": "ert-1",
+  "productName": "Ts App",
   "version": "0.1.0",
+  "description": "a demo web",
   "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "build": {
+    "appId": "ts.app.first",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "runAfterFinish": false,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "uninstallDisplayName": "Ts App",
+      "license": "license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "keywords": [],
+  "author": {
+    "name": "Zaeem Tarrar",
+    "email": "zaeemtarrar3@gmail.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "Ts App"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -20,7 +80,22 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "my-electron": "electron .",
+    "build-electron": "electron-builder",
+    "electron-build": "yarn build && yarn build-electron -wml",
+    "my-electron-build": "yarn build && yarn build-electron",
+    "electron-start": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "forge-start": "electron-forge start",
+    "my-forge-start": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron-forge start",
+    "forge-package": "electron-forge package",
+    "forge-make": "electron-forge make",
+    "my-forge-make": "yarn build && electron-forge make",
+    "forge-publish": "electron-forge publish",
+    "forge-lint": "echo \"No linting configured\"",
+    "forge-build-installer": "electron-builder",
+    "app-build": "yarn build && yarn build-electron",
+    "app-start": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron-forge start"
   },
   "eslintConfig": {
     "extends": [
