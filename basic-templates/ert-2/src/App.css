@@ -21,6 +21,10 @@ a {
   color: var(--dark-c-1);
 }
 
+.gray {
+  filter: grayscale(100%);
+}
+
 .expander {
   transition: transform 0.1s, color 0.1s;
 }
@@ -29,7 +33,7 @@ a {
 }
 .expander-2 {
   box-shadow: 0px 0px 10px #000;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
 }
 .expander-2:hover {
   transform: scale(1.5);

@@ -20,7 +20,57 @@ const Tray: React.FC = (): JSX.Element => {
   return (
     <>
       <div style={MainContainer}>
-        <img src="assets/html6.png" alt="" style={Image} className="expander" />
+        <img
+          src="assets/html6.png"
+          alt=""
+          style={Image}
+          className="expander gray"
+        />
+        <img src="assets/css1.jpg" alt="" style={Image} className="expander" />
+        <img
+          src="assets/javascript3.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img
+          src="assets/typescript2.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <img src="assets/css1.jpg" alt="" style={Image} className="expander" />
+        <img
+          src="assets/javascript3.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img
+          src="assets/typescript2.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <img src="assets/css1.jpg" alt="" style={Image} className="expander" />
+        <img
+          src="assets/javascript3.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img
+          src="assets/typescript2.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
         <img src="assets/css1.jpg" alt="" style={Image} className="expander" />
         <img
           src="assets/javascript3.png"
