@@ -1,5 +1,6 @@
 import React from 'react'
 import TopMenuBar from './../../../components/function/TopMenuBar/TopMenuBar'
+import View from './../View/View'
 
 const Window: React.FC = (props): JSX.Element => {
   return (
@@ -7,7 +8,9 @@ const Window: React.FC = (props): JSX.Element => {
       <>
         <TopMenuBar />
       </>
-      <>{props.children}</>
+      <>
+        <View>{props.children}</View>
+      </>
     </>
   )
 }

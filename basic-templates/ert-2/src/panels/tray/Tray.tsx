@@ -5,25 +5,38 @@ const MainContainer: any = {
   height: '100vh',
   backgroundColor: '#333',
   color: '#fff',
+  padding: '5%',
 }
 
-const TopBar: any = {
-  width: '100vw',
-  height: '10vh',
-  borderBottom: '1px solid #666',
-  display: 'flex',
-  textAlign: 'center',
-  justifyContent: 'center',
-  alignItems: 'center',
+const Image: any = {
+  float: 'left',
+  width: '30px',
+  height: '30px',
+  margin: '7px',
+  borderRadius: '10px',
 }
 
 const Tray: React.FC = (): JSX.Element => {
   return (
     <>
       <div style={MainContainer}>
-        <div style={TopBar}>
-          <span> TypeScript App </span>
-        </div>
+        <img src="assets/html6.png" alt="" style={Image} className="expander" />
+        <img src="assets/css1.jpg" alt="" style={Image} className="expander" />
+        <img
+          src="assets/javascript3.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img
+          src="assets/typescript2.png"
+          alt=""
+          style={Image}
+          className="expander"
+        />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <img src="assets/html.png" alt="" style={Image} className="expander" />
+        <div className="clearfix"></div>
       </div>
     </>
   )

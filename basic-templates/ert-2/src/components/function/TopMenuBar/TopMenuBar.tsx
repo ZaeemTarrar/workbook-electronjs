@@ -41,33 +41,39 @@ const TopMenuBar: React.FC = (): JSX.Element => {
           </span>
         </div>
         <div style={ThreeBtn}>
-          <DashCircleFill
-            className="expander"
-            color={'#7bd44e'}
-            size={15}
-            style={{ margin: '2px' }}
-            onClick={(e) => {
-              ipcRenderer.send('minimizeApp')
-            }}
-          />
-          <StopCircleFill
-            className="expander"
-            color={'#f2da52'}
-            size={15}
-            style={{ margin: '2px' }}
-            onClick={(e) => {
-              ipcRenderer.send('minMaxApp')
-            }}
-          />
-          <XCircleFill
-            className="expander"
-            color={'#f2514b'}
-            size={15}
-            style={{ margin: '2px' }}
-            onClick={(e) => {
-              ipcRenderer.send('quitApp')
-            }}
-          />
+          <span title="Minimize">
+            <DashCircleFill
+              className="expander"
+              color={'#7bd44e'}
+              size={15}
+              style={{ margin: '2px' }}
+              onClick={(e) => {
+                ipcRenderer.send('minimizeApp')
+              }}
+            />
+          </span>
+          <span title="Maximize">
+            <StopCircleFill
+              className="expander"
+              color={'#f2da52'}
+              size={15}
+              style={{ margin: '2px' }}
+              onClick={(e) => {
+                ipcRenderer.send('minMaxApp')
+              }}
+            />
+          </span>
+          <span title="Close Window">
+            <XCircleFill
+              className="expander"
+              color={'#f2514b'}
+              size={15}
+              style={{ margin: '2px' }}
+              onClick={(e) => {
+                ipcRenderer.send('quitApp')
+              }}
+            />
+          </span>
         </div>
         <div className="clearfix"></div>
       </div>

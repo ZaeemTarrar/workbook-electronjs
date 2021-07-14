@@ -162,10 +162,8 @@ const createWindow = () => {
         if (mainWindow.isMaximized()) {
           mainWindow.restore()
           mainWindow.unmaximize()
-          console.log('Restored')
         } else {
           mainWindow.maximize()
-          console.log('Maximized')
         }
       } catch (err) {
         console.log('Error: ', err)
