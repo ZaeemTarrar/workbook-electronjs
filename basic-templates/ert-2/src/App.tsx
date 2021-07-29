@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'animate.css/animate.css'
 import './App.css'
+// import Animate from 'animate.css-react'
 import React, { useEffect, useState } from 'react'
 import Tray from './panels/tray/Tray'
 import MainNavigation from './routes/client/MainNavigation/MainNavigation'
@@ -11,13 +13,14 @@ const App: React.FC = (): JSX.Element => {
 
   const init: Function = (): void => {
     ipcRenderer.on('isTray', (event: any, data: any) => {
+      console.log('isTray: ', data)
       setIsTray(data)
     })
   }
 
   useEffect(() => {
     init()
-  })
+  }, [])
 
   const LayoutDecision = () => {
     if (isTray == null) {

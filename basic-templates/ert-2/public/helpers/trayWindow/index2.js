@@ -52,8 +52,8 @@ let MainTrayVisibility = false
 // ]
 
 const WINDOW_SIZE_DEFAULTS = {
-  width: 300,
-  height: 400,
+  width: 500,
+  height: 300,
   margin: {
     x: 0,
     y: 0,
@@ -124,9 +124,11 @@ const toggleTrayWindow = () => {
   })
   Chain.then(() => {
     if (MainTrayWindow.isVisible() === true && MainTrayVisibility == true) {
+      MainTrayWindow.webContents.send('trayWindowVisibilityStatus', false)
       MainTrayVisibility = false
       return MainTrayWindow.hide()
     } else {
+      MainTrayWindow.webContents.send('trayWindowVisibilityStatus', true)
       MainTrayVisibility = true
       return MainTrayWindow.show()
     }
@@ -167,12 +169,15 @@ const alignWindow = () => {
 }
 
 const InitTrayWindow = () => {
+  // const image = new Image(path.join(__dirname, './../../icon.ico'))
+  // MainTray = new Tray(image.resize({ width: 16, height: 16 }))
   const iconPath = path.join(__dirname, './../../icon.ico')
   MainTray = new Tray(iconPath)
   createTrayWindow()
   MainTrayWindow.webContents.on('did-finish-load', () => {
-    // IPC(MainTrayWindow, MainTray, ipcMain)
     MainTrayWindow.webContents.send('isTray', true)
+    MainTrayWindow.webContents.send('Test', 'Testing')
+    // IPC(MainTrayWindow, MainTray, ipcMain)
     ipcMain.on('quitApp', (event) => {
       try {
         MainTrayWindow.close()

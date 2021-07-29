@@ -22,7 +22,7 @@ a {
 }
 
 .gray {
-  filter: grayscale(100%);
+  filter: grayscale(90%);
 }
 
 .expander {
@@ -32,19 +32,23 @@ a {
   transform: scale(1.3);
 }
 .expander-2 {
-  box-shadow: 0px 0px 10px #000;
-  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  transition: transform 0.2s;
 }
 .expander-2:hover {
-  transform: scale(1.5);
-  box-shadow: 0px 0px 10px #000 inset;
+  transform: scale(1.6);
 }
 
 .TopMenuBarContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: 3vh;
+  height: 8vh;
   min-height: 25px;
-  background-color: var(--dark-bg-1);
+  background-color: transparent;
+  /* background-color: var(--dark-bg-1); */
+  /* display: flex; */
+  text-align: center;
   color: var(--dark-c-1);
   justify-content: center;
   align-items: center;
@@ -55,20 +59,26 @@ a {
 
 .RestScreenView {
   width: 100vw;
-  height: 97vh;
+  height: 100vh;
   overflow: hidden;
 }
 
 @media screen and (max-width: 1000px) {
   .TopMenuBarContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 5vh;
+    height: 8vh;
     min-height: 25px;
-    background-color: var(--dark-bg-1);
+    background-color: transparent;
+    /* background-color: var(--dark-bg-1); */
+    /* display: flex; */
+    text-align: center;
     color: var(--dark-c-1);
     justify-content: center;
     align-items: center;
-    padding: 1vh 1vw;
+    padding: 2vh 2vw;
     font-size: 13px;
     /* -webkit-user-select: none; */
   }
@@ -84,4 +94,28 @@ a {
 }
 .NonDragger {
   -webkit-app-region: non-drag;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+.no-scroll {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+.no-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+.sharp {
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
+.node-menu > li {
+  cursor: pointer;
+}
+.node-menu > li:hover {
+  background-color: #333 !important;
 }

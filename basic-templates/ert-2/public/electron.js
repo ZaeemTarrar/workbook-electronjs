@@ -72,10 +72,10 @@ let trayWindow = null
 const createWindow = () => {
   // app.dock.hide()
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 600,
-    minWidth: 600,
-    minHeight: 450,
+    minWidth: 900,
+    minHeight: 600,
     frame: false,
     backgroundColor: 'transparent',
     center: true,
@@ -105,8 +105,8 @@ const createWindow = () => {
   })
 
   splash = new BrowserWindow({
-    width: 810,
-    height: 610,
+    width: 800,
+    height: 600,
     transparent: true,
     frame: false,
     alwaysOnTop: true,
@@ -138,10 +138,14 @@ const createWindow = () => {
   CreateMenu()
   mainWindow.setMenuBarVisibility(false)
   // mainWindow.setFullScreen(true)
+  // mainWindow.minimize()
 
   mainWindow.webContents.on('did-finish-load', function () {
     // IPC(mainWindow, ipcMain)
     mainWindow.webContents.send('isTray', false)
+    ipcMain.on('traySection', (event, data) => {
+      mainWindow.webContents.send('trayRoute', data)
+    })
     ipcMain.on('quitApp', (event) => {
       try {
         mainWindow.close()
