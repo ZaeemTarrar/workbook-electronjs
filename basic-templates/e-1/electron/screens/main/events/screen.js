@@ -26,6 +26,7 @@ module.exports = (id) => {
         Screen.getPosition(),
       )
     Screen.show()
+    Contents.send('app-ready', 'The Application is Ready')
     // dialogTests()
   })
   Screen.on('page-title-updated', (event, title, explicitSet) => {
@@ -123,6 +124,8 @@ module.exports = (id) => {
   Screen.on('closed', () => {
     Screen = null
     global.DESKTOP_APP_WINDOW_MAIN_SCREEN_Id = null
+    global.DESKTOP_APP_WINDOW_TRAY_MENU.destroy()
+    global.DESKTOP_APP_WINDOW_TRAY_MENU = null
     if (consoleEvents) console.log('Main Window - Closed')
   })
 }

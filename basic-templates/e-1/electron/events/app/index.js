@@ -9,6 +9,9 @@ const {
 } = require('./../../configs/index')
 const { DialogTests, GetCommonPaths } = require('./../../utils/Testing')
 const { RegisterShortcuts } = require('./../../shortcuts/index')
+const SystemEvents = require('./../system/index')
+const { RegisterInternalProcessConnections } = require('./../ipc/index')
+const TrayMenu = require('./../../trays/template/index')
 const MainScreen = require('./../../screens/main/index')
 const AboutScreen = require('./../../screens/about/index')
 
@@ -20,11 +23,15 @@ module.exports = () => {
     GetCommonPaths()
     // Registerations
     RegisterShortcuts()
-    // Menus
-    // MainTopMenu()
+    // Events
+    SystemEvents()
+    // IPC
+    RegisterInternalProcessConnections()
+    // Trays
+    TrayMenu.CreateTrayMenu()
     // Windows
     MainScreen.CreateWindow()
-    AboutScreen.CreateWindow()
+    // AboutScreen.CreateWindow()
   })
 
   app.on('browser-window-blur', (event, window) => {
