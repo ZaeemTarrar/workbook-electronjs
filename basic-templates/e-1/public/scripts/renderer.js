@@ -1,5 +1,11 @@
 const Electron = require('electron')
-const { webFrame, desktopCapturer, ipcRenderer } = Electron
+const {
+  webFrame,
+  desktopCapturer,
+  ipcRenderer,
+  nativeImage,
+  clipboard,
+} = Electron
 const Remote = Electron.remote
 const { dialog, BrowserWindow } = Remote
 const MessageScreen = require('./screens/message/index')
@@ -12,6 +18,14 @@ const Launch = () => {
   webFrame.setZoomLevel(1)
 
   const CurrentScreen = Remote.getCurrentWindow()
+
+  const splash = nativeImage.createFromPath(
+    `${__dirname}/../images/thumbsup.png`,
+  )
+
+  console.log('Splash Image Size: ', splash.getSize())
+  //   splash.toPNG()
+  //   splash.toJPEG(100)
 
   let Link1_Screen
   const Link1 = document.getElementById('link1')

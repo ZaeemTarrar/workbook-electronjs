@@ -71,3 +71,5 @@ Add Scripts to Package.Json
 12. Process
 13. Screen
 14. Shell
+15. Native Image
+16. ClipBoard
