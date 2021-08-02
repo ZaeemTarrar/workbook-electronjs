@@ -6,6 +6,7 @@ const {
   inputEvents,
   downloadPath,
 } = require('./../../configs/index')
+const path = require('path')
 
 module.exports = (WindowState) => {
   if (WindowState === null || WindowState === undefined)
@@ -62,6 +63,7 @@ module.exports = (WindowState) => {
     thickFrame: true,
     webPreferences: {
       devTools: true,
+      offscreen: true,
       contextIsolation: false,
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
@@ -94,6 +96,7 @@ module.exports = (WindowState) => {
       enablePreferredSizeMode: false,
       // session: customSes,
       partition: 'persist:part1',
+      preload: path.join(__dirname, './../../../public/scripts/preload.js'),
     },
   }
   if (process.platform === 'win32' || process.platform === 'win64') {

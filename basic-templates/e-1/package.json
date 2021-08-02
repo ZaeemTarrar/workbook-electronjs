@@ -7,7 +7,24 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "watch": "nodemon --exec electron .",
+    "mac": "electron-builder -m",
+    "win": "electron-builder -w",
+    "build": "electron-builder -mwl",
     "reset": "git reset --hard"
+  },
+  "build": {
+    "appId": "com.webloapplo.desker",
+    "directories": {
+      "buildResources": "."
+    },
+    "mac": {
+      "category": "public.app-category.productiviy",
+      "target": "dmg"
+    },
+    "win": {},
+    "linux": {
+      "category": "Netwrok"
+    }
   },
   "keywords": [
     "Electron",
@@ -18,10 +35,13 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^13.1.7",
+    "electron-builder": "^22.11.7",
     "electron-cli": "^0.2.8",
     "nodemon": "^2.0.12"
   },
   "dependencies": {
-    "electron-window-state": "^5.0.3"
+    "electron-window-state": "^5.0.3",
+    "node-notifier": "^10.0.0",
+    "request": "^2.88.2"
   }
 }

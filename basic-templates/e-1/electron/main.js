@@ -24,6 +24,7 @@ const fs = require('fs')
 
 const Application = () => {
   try {
+    app.disableHardwareAcceleration()
     app.commandLine.appendSwitch('enable-features', 'ElectronSerialChooser')
     AppEvents()
   } catch (error) {

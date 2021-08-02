@@ -73,3 +73,10 @@ Add Scripts to Package.Json
 14. Shell
 15. Native Image
 16. ClipBoard
+17. OffScreen Rendering
+    - Disable Hardware Accelration
+18. Network Detection
+    - Window Navigation Module
+19. OS / Web Notifications
+20. Preload Scripts
+21. Taskbar Progress

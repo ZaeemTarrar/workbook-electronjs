@@ -11,13 +11,42 @@ const { dialog, BrowserWindow } = Remote
 const MessageScreen = require('./screens/message/index')
 
 const Launch = () => {
+  const CurrentScreen = Remote.getCurrentWindow()
+
+  console.log('System Is: ', window.navigator.onLine ? 'online' : 'offline')
+  window.addEventListener('online', (e) => {
+    console.log('System Is: ', window.navigator.onLine ? 'online' : 'offline')
+  })
+  window.addEventListener('offline', (e) => {
+    console.log('System Is: ', window.navigator.onLine ? 'online' : 'offline')
+  })
+
+  let progress = 0
+  const looper = setInterval(() => {
+    progress += 0.01
+    CurrentScreen.setProgressBar(progress)
+    if (progress >= 1) {
+      CurrentScreen.setProgressBar(-1)
+      clearInterval(looper)
+    }
+  }, 100)
+
+  console.log('Window Preload Test: ', desktop)
+
   ipcRenderer.on('app-ready', (event, args) => {
     console.log('Initial Ipc Render By Main Screen WenContents: ', args)
   })
 
-  webFrame.setZoomLevel(1)
+  setTimeout(() => {
+    const notification = new Notification('WeblO ApplO', {
+      body: 'Hello World !',
+    })
+    notification.onclick = function (e) {
+      if (!CurrentScreen.isVisible()) CurrentScreen.show()
+    }
+  }, 7000)
 
-  const CurrentScreen = Remote.getCurrentWindow()
+  webFrame.setZoomLevel(1)
 
   const splash = nativeImage.createFromPath(
     `${__dirname}/../images/thumbsup.png`,

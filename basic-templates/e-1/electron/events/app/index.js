@@ -1,4 +1,4 @@
-const { app } = require('electron')
+const { app, Notification } = require('electron')
 const {
   consoleInformation,
   consoleEvents,
@@ -7,6 +7,8 @@ const {
   inputEvents,
   downloadPath,
 } = require('./../../configs/index')
+const notifier = require('node-notifier')
+const path = require('path')
 const { DialogTests, GetCommonPaths } = require('./../../utils/Testing')
 const { RegisterShortcuts } = require('./../../shortcuts/index')
 const SystemEvents = require('./../system/index')
@@ -14,6 +16,50 @@ const { RegisterInternalProcessConnections } = require('./../ipc/index')
 const TrayMenu = require('./../../trays/template/index')
 const MainScreen = require('./../../screens/main/index')
 const AboutScreen = require('./../../screens/about/index')
+
+const NotificationTest = () => {
+  notifier.notify(
+    {
+      appID: '\t',
+      title: 'My awesome title',
+      subtitle: 'This is SubTitle',
+      message: 'Hello from node, Mr. User!',
+      icon: path.join(__dirname, './../../../public/images/thumbsup.png'), // Absolute path (doesn't work on balloons)
+      contentImage: path.join(
+        __dirname,
+        './../../../public/images/thumbsup.png',
+      ),
+      open: undefined,
+      sound: true, // Only Notification Center or Windows Toasters
+      wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+      timeout: 5, // Takes precedence over wait if both are defined.
+      closeLabel: undefined, // String. Label for cancel button
+      actions: undefined, // String | Array<String>. Action label or list of labels in case of dropdown
+      dropdownLabel: undefined, // String. Label to be used if multiple actions
+      reply: false, // Boolean. If notification should take input. Value passed as third argument in callback and event emitter.
+      sticky: false,
+      label: 'Hello There',
+      priority: undefined,
+    },
+    function (err, response, metadata) {
+      // Response is response from notification
+      // Metadata contains activationType, activationAt, deliveredAt
+    },
+  )
+
+  notifier.on('click', function (notifierObject, options, event) {
+    // Triggers if `wait: true` and user clicks notification
+    console.log('Notification Clicked')
+    // if (!DESKTOP_APP_WINDOW_MAIN_SCREEN.isVisible())
+    DESKTOP_APP_WINDOW_MAIN_SCREEN.show()
+    DESKTOP_APP_WINDOW_MAIN_SCREEN.focus()
+  })
+
+  notifier.on('timeout', function (notifierObject, options) {
+    // Triggers if `wait: true` and notification closes
+    console.log('Notification TimedOut')
+  })
+}
 
 module.exports = () => {
   app.on('ready', (event, launchInfo) => {
@@ -32,6 +78,10 @@ module.exports = () => {
     // Windows
     MainScreen.CreateWindow()
     // AboutScreen.CreateWindow()
+
+    // setTimeout(() => {
+    //   NotificationTest()
+    // }, 4000)
   })
 
   app.on('browser-window-blur', (event, window) => {
