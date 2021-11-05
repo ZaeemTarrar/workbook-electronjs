@@ -1,0 +1,25 @@
+/**
+ * Required Imports
+ */
+const { app, BrowserWindow, session, dialog, globalShortcut, Menu, MenuItem } = require('electron');
+const {
+	consoleInformation,
+	consoleEvents,
+	browserInformation,
+	browserEvents,
+	inputEvents,
+	downloadPath
+} = require('./configs/index');
+const AppEvents = require('./events/app/index');
+const request = require('request');
+const fs = require('fs');
+
+module.exports.Application = () => {
+	try {
+		app.disableHardwareAcceleration();
+		app.commandLine.appendSwitch('enable-features', 'ElectronSerialChooser');
+		AppEvents();
+	} catch (error) {
+		console.log('Application Error: ', error);
+	}
+};
